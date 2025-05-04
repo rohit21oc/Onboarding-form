@@ -106,3 +106,13 @@ textarea {
   font-size: 16px;
   text-align: center;
 }
+
+.required {
+  color: red;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
