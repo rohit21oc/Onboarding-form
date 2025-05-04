@@ -3,37 +3,47 @@
     <form [formGroup]="userForm" (ngSubmit)="submitForm()" id="form" class="form-grid">
       
       <div class="form-group">
-        <label for="fname">First Name:</label>
+        <label for="fname">First Name: <span class="required">*</span></label>
+
         <input type="text" name="fname" id="fname" formControlName="fname">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">First name is required.</div>
       </div>
   
       <div class="form-group">
         <label for="mname">Middle Name:</label>
+
         <input type="text" name="mname" id="mname" formControlName="mname">
       </div>
   
       <div class="form-group">
-        <label for="lname">Last Name (Surname):</label>
+        <label for="lname">Last Name (Surname):<span class="required">*</span></label>
+
         <input type="text" name="lname" id="lname" formControlName="lname">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Last name is required.</div>
       </div>
   
       <div class="form-group">
-        <label for="pemail">Personal Email:</label>
+        <label for="email">Personal Email: <span class="required">*</span></label>
+
         <input type="email" name="email" id="pemail" formControlName="email">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Email is required.</div>
       </div>
   
       <div class="form-group">
-        <label for="gender">Gender:</label>
+        <label for="gender">Gender:<span class="required">*</span></label>
+
         <select name="gender" id="gender" formControlName="gender">
           <option value="">Select gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
         </select>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Gender is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="bloodg">Blood Group:</label>
+        <label for="bloodg">Blood Group:<span class="required">*</span></label>
         <select name="bloodGroup" id="bloodg" formControlName="bloodGroup">
           <option value="">Select blood group</option>
           <option value="O+">O+</option>
@@ -45,21 +55,29 @@
           <option value="AB+">AB+</option>
           <option value="AB-">AB-</option>
         </select>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Blood Group is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="dob">Official DOB:</label>
-        <input type="text" id="dob" name="dob" placeholder="DD-MM-YYYY" formControlName="dob">
+        <label for="dob">Official DOB:<span class="required">*</span></label>
+
+        <input type="date" id="dob" name="dob" formControlName="dob">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Official DOB is required.</div>
       </div>
+      
   
       <div class="form-group">
-        <label for="merital">Marital Status:</label>
+        <label for="merital">Marital Status: <span class="required">*</span></label>
+
         <select name="merital" id="merital" formControlName="merital">
           <option>Select status</option>
           <option value="single">Single</option>
           <option value="married">Married</option>
           <option value="divorced">Divorced</option>
         </select>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Marital Status is required.</div>
+
       </div>
   
       <div class="form-group">
@@ -68,12 +86,15 @@
       </div>
   
       <div class="form-group full-width">
-        <label for="current_address">Current Address:</label>
+        <label for="current_address">Current Address: <span class="required">*</span></label>
+
         <textarea name="current_address" id="current_address" formControlName="current_address"></textarea>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Current Address is required.</div>
       </div>
   
       <div class="form-group">
-        <label for="current_country">Country:</label>
+        <label for="current_country">Country: <span class="required">*</span></label>
+
         <select name="current_country" id="current_country" formControlName="current_country">
           <option value="">Select</option>
           <option value="india">India</option>
@@ -82,37 +103,58 @@
           <option value="russia">Russia</option>
           <option value="bangladesh">Bangladesh</option>
         </select>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Country is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="current_state">State:</label>
+        <label for="current_state">Current state: <span class="required">*</span></label>
         <input type="text" id="current_state" name="current_state" placeholder="State" formControlName="current_state">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Current State is required.</div>
+      
       </div>
+
   
       <div class="form-group">
-        <label for="current_city">City:</label>
+        <label for="current_city">City: <span class="required">*</span></label>
         <input type="text" id="current_city" name="current_city" placeholder="City" formControlName="current_city">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">City is required.</div>
+      
       </div>
   
       <div class="form-group">
-        <label for="current_pincode">Pincode:</label>
+        <label for="current_pincode">Pincode: <span class="required">*</span></label>
         <input type="number" id="current_pincode" name="pincode" formControlName="current_pincode">
+        <div *ngIf="userForm.get('current_pincode')?.touched && userForm.get('current_pincode')?.invalid" class="error">
+          <span *ngIf="userForm.get('current_pincode')?.errors?.['required']">Pincode is required.</span>
+          <span *ngIf="userForm.get('current_pincode')?.errors?.['pattern']">Pincode must be 6 digits.</span>
+        </div>
       </div>
+      
   
       <div class="form-group">
-        <label for="current_contact">Contact Number:</label>
+        <label for="current_contact">Contact Number: <span class="required">*</span></label>
         <input type="number" id="current_contact" name="current_contact" formControlName="current_contact">
+        <div *ngIf="userForm.get('current_contact')?.touched && userForm.get('current_contact')?.invalid" class="error">
+          <span *ngIf="userForm.get('current_contact')?.errors?.['required']">Contact number is required.</span>
+          <span *ngIf="userForm.get('current_contact')?.errors?.['pattern']">Contact number must be exactly 10 digits.</span>
+        </div>
       </div>
+      
   
       <div class="form-group full-width">
         <label for="permanent_address">Permanent Address: 
-          <input type="checkbox" id="same_as_current"> Same as Above
-        </label>
+          <input type="checkbox" id="same_as_current" (change)="onSameAsCurrentChange($event)">
+
+          <span class="required">*</span> </label>
         <textarea name="permanent_address" id="permanent_address" formControlName="permanent_address"></textarea>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">permanent Address is required.</div>
+      
       </div>
   
       <div class="form-group">
-        <label for="permanent_country">Country:</label>
+        <label for="permanent_country">Country:<span class="required">*</span></label>
+
         <select name="permanent_country" id="permanent_country" formControlName="permanent_country">
           <option value="">Select</option>
           <option value="india">India</option>
@@ -121,35 +163,56 @@
           <option value="russia">Russia</option>
           <option value="bangladesh">Bangladesh</option>
         </select>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Country is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="permanent_state">State:</label>
+        <label for="permanent_state">State:<span class="required">*</span></label>
         <input type="text" id="permanent_state" name="permanent_state" placeholder="State" formControlName="permanent_state">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">State is required.</div>
       </div>
+
   
       <div class="form-group">
-        <label for="permanent_city">City:</label>
+        <label for="permanent_city">City:<span class="required">*</span></label>
         <input type="text" id="permanent_city" name="permanent_city" placeholder="City" formControlName="permanent_city">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">City is required.</div>
       </div>
   
       <div class="form-group">
-        <label for="permanent_pincode">Pincode:</label>
-        <input type="number" id="permanent_pincode" name="permanent_pincode" formControlName="permanent_pincode">
+        <label for="current_pincode">Pincode: <span class="required">*</span></label>
+        <input type="number" id="current_pincode" name="pincode" formControlName="current_pincode">
+        <div *ngIf="userForm.get('current_pincode')?.touched && userForm.get('current_pincode')?.invalid" class="error">
+          <span *ngIf="userForm.get('current_pincode')?.errors?.['required']">Pincode is required.</span>
+          <span *ngIf="userForm.get('current_pincode')?.errors?.['pattern']">Pincode must be 6 digits.</span>
+        </div>
       </div>
+      
   
       <div class="form-group">
-        <label for="permanent_contact">Permanent Contact Number:</label>
-        <input type="number" id="permanent_contact" name="permanent_contact" formControlName="permanent_contact">
+        <label for="permanent_contact">Permanent Contact Number:<span class="required">*</span></label>
+        <input type="text" id="permanent_contact" name="permanent_contact" formControlName="permanent_contact">
+        
+        <div class="error" *ngIf="f.permanent_contact.touched && f.permanent_contact.errors?.['required']">
+          Permanent contact number is required.
+        </div>
+        <div class="error" *ngIf="f.permanent_contact.touched && f.permanent_contact.errors?.['pattern']">
+          Contact number must be 10 digits.
+        </div>
       </div>
+      
   
       <div class="form-group full-width">
-        <label for="bcp_address">BCP Work Address (with Landmark):</label>
+        <label for="bcp_address">BCP Work Address (with Landmark):<span class="required">*</span></label>
         <textarea id="bcp_address" name="bcp_address" formControlName="bcp_address"></textarea>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid"> BCP Work Address (with Landmark) is required.</div>
+
+        
       </div>
   
       <div class="form-group">
-        <label for="bcp_country">Country:</label>
+        <label for="bcp_country">Country:<span class="required">*</span></label>
         <select id="bcp_country" name="bcp_country" formControlName="bcp_country">
           <option value="">Select</option>
           <option value="india">India</option>
@@ -158,40 +221,63 @@
           <option value="russia">Russia</option>
           <option value="bangladesh">Bangladesh</option>
         </select>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Country is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="bcp_state">State:</label>
+        <label for="bcp_state">State:<span class="required">*</span></label>
         <input type="text" name="bcp_state" id="bcp_state" placeholder="State" formControlName="bcp_state">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">State is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="bcp_city">City:</label>
+        <label for="bcp_city">City:<span class="required">*</span></label>
         <input type="text" name="bcp_city" id="bcp_city" placeholder="City" formControlName="bcp_city">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">City is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="bcp_pincode">Pincode:</label>
-        <input type="number" name="bcp_pincode" id="bcp_pincode" formControlName="bcp_pincode">
+        <label for="current_pincode">Pincode: <span class="required">*</span></label>
+        <input type="number" id="current_pincode" name="pincode" formControlName="current_pincode">
+        <div *ngIf="userForm.get('current_pincode')?.touched && userForm.get('current_pincode')?.invalid" class="error">
+          <span *ngIf="userForm.get('current_pincode')?.errors?.['required']">Pincode is required.</span>
+          <span *ngIf="userForm.get('current_pincode')?.errors?.['pattern']">Pincode must be 6 digits.</span>
+        </div>
       </div>
+      
   
       <div class="form-group full-width">
-        <label for="emergency_contact_name">Emergency Contact Name & Address:</label>
+        <label for="emergency_contact_name">Emergency Contact Name & Address:<span class="required">*</span></label>
         <textarea name="emergency_contact_name" id="emergency_contact_name" formControlName="emergency_contact_name"></textarea>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Emergency Contact Name & Address is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="emergency_contact_number">Emergency Contact Number:</label>
-        <input type="number" name="emergency_contact_number" id="emergency_contact_number" formControlName="emergency_contact_number">
+        <label for="emergency_contact_number">Emergency Contact Number:<span class="required">*</span></label>
+        <input type="text" name="emergency_contact_number" id="emergency_contact_number" formControlName="emergency_contact_number">
+        
+        <div class="error" *ngIf="f.emergency_contact.touched && f.emergency_contact.errors?.['required']">
+          Emergency contact number is required.
+        </div>
+        <div class="error" *ngIf="f.emergency_contact.touched && f.emergency_contact.errors?.['pattern']">
+          Contact number must be 10 digits.
+        </div>
       </div>
+      
   
       <div class="form-group">
-        <label for="emergency_relationship">Relationship with Employee:</label>
+        <label for="emergency_relationship">Relationship with Employee:<span class="required">*</span></label>
         <input type="text" name="emergency_relationship" id="emergency_relationship" formControlName="emergency_relationship">
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Relationship with Employee is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="prev_experience_years">Previous Experience (Years):</label>
+        <label for="prev_experience_years">Previous Experience (Years):<span class="required">*</span></label>
         <select name="year" id="prev_experience_years" formControlName="year">
           <option value="0">0</option>
           <option value="1">1</option>
@@ -199,10 +285,12 @@
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Previous Experience (Years) is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="prev_experience_months">Previous Experience (Months):</label>
+        <label for="prev_experience_months">Previous Experience (Months):<span class="required">*</span></label>
         <select name="month" id="prev_experience_months" formControlName="month">
           <option value="0">0</option>
           <option value="1">1</option>
@@ -210,10 +298,12 @@
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Previous Experience (Months) is required.</div>
+
       </div>
   
       <div class="form-group">
-        <label for="relevant_experience">Relevant Experience:</label>
+        <label for="relevant_experience">Relevant Experience:<span class="required">*</span></label>
         <select name="relevantYear" id="relevant_experience" formControlName="relevantYear">
           <option value="">Select year</option>
           <option value="0">0</option>
@@ -221,6 +311,8 @@
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
+        <div class="error" *ngIf="f.fname.touched && f.fname.invalid">Relevant Experience is required.</div>
+
       </div>
   
       <div class=" full-width button-group">
