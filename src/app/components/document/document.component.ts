@@ -24,33 +24,36 @@ export class DocumentComponent {
       matric:[null, Validators.required],
       intermediate: [null, Validators.required],
       graduationMarksheet: [null, Validators.required],
-      postGraduation: [null, Validators.required],
+      postGraduation: [null],
       checkLeaf: [null, Validators.required],
       passbook: [null, Validators.required],
     });
     this.userService.setFormData('education', this.documentForm);
   }
 
-  onFileChange(event: any, controlName: string) {
+  onFileChange(event: any, controlName: string, fileInput: HTMLInputElement) {
   const file = event.target.files[0];
   if (file) {
     const maxSizeInMB = 1;
     const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
+
     if (file.size > maxSizeInBytes) {
-       this.fileErrors[controlName] = 'File size must be less than 1 MB';
-      // alert(`${controlName} file size should not exceed ${maxSizeInMB} MB.`);
-      this.documentForm.patchValue({ [controlName]: null });
+      this.fileErrors[controlName] = 'File size must be less than 1 MB';
+      this.documentForm.get(controlName)?.setValue(null); 
+      fileInput.value = ''; 
       return;
-    }
-    else {
+    } else {
       this.fileErrors[controlName] = '';
-      this.documentForm.patchValue({ [controlName]: file });
+      this.documentForm.get(controlName)?.setValue(file); 
     }
   }
 }
+
   submitForm() {
   if (this.documentForm.valid) {
     const formData = new FormData();
+  
+    
     Object.keys(this.documentForm.controls).forEach(key => {
       formData.append(key, this.documentForm.get(key)?.value);
     });
@@ -58,6 +61,7 @@ export class DocumentComponent {
     this.userService.uploadDocuments(formData).subscribe(
       response => {
         console.log('Upload success:', response);
+
         this.router.navigate(['/resume']);
       },
       error => {

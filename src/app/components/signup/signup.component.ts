@@ -36,7 +36,8 @@ export class SignupComponent implements OnInit {
           ]
         ],
                 
-        confirmPassword: ['', Validators.required]
+        confirmPassword: ['', Validators.required],
+        
       },
       { validators: this.passwordMatchValidator }
     );
@@ -50,7 +51,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit(): void {
     if (this.signupForm.valid) {
-      const formData = { ...this.signupForm.value };
+      const formData = { ...this.signupForm.value,role: ['employee'] };
       delete formData.confirmPassword;
       console.log("signUp",formData)
 

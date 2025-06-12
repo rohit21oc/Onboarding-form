@@ -7,7 +7,9 @@
 
       <div class="form-group">
         <label>Pan card Image</label>
-        <input type="file" formControlName="panCard" (change)="onFileChange($event, 'panCard')">
+        <!-- <input type="file" formControlName="panCard" (change)="onFileChange($event, 'panCard')"> -->
+         <input type="file" #panCardInput formControlName="panCard" (change)="onFileChange($event, 'panCard', panCardInput)">
+
         <div class="error" *ngIf="documentForm.get('panCard')?.touched && documentForm.get('panCard')?.invalid">
           Pan card is required.
         </div>
@@ -16,8 +18,11 @@
 
       <div class="form-group">
         <label>Aadhar card Image</label>
-        <input type="file" formControlName="aadharCard" (change)="onFileChange($event, 'aadharCard')">
+        <!-- <input type="file" formControlName="aadharCard" (change)="onFileChange($event, 'aadharCard')"> -->
+         <input type="file" #aadharInput formControlName="aadharCard" (change)="onFileChange($event, 'aadharCard', aadharInput)">
+
         <div class="error" *ngIf="documentForm.get('aadharCard')?.touched && documentForm.get('aadharCard')?.invalid">
+
           Aadhar card is required.
         </div>
         <div class="error" *ngIf="fileErrors['aadharCard']">{{ fileErrors['aadharCard'] }}</div>
@@ -25,7 +30,7 @@
 
       <div class="form-group">
         <label>Passport size Image</label>
-        <input type="file" formControlName="pSizePhoto" (change)="onFileChange($event, 'pSizePhoto')">
+<input type="file" #photoInput formControlName="pSizePhoto" (change)="onFileChange($event, 'pSizePhoto', photoInput)">
         <div class="error" *ngIf="documentForm.get('pSizePhoto')?.touched && documentForm.get('pSizePhoto')?.invalid">
           Passport size photo is required.
         </div>
@@ -42,7 +47,7 @@
 
       <div class="form-group">
         <label>10th document</label>
-        <input type="file" formControlName="matric" (change)="onFileChange($event, 'matric')">
+<input type="file" #matricInput formControlName="matric" (change)="onFileChange($event, 'matric', matricInput)">
         <div class="error" *ngIf="documentForm.get('matric')?.touched && documentForm.get('matric')?.invalid">
           10th document is required.
         </div>
@@ -51,7 +56,7 @@
 
       <div class="form-group">
         <label>12th document</label>
-        <input type="file" formControlName="intermediate" (change)="onFileChange($event, 'intermediate')">
+<input type="file" #interInput formControlName="intermediate" (change)="onFileChange($event, 'intermediate', interInput)">
         <div class="error" *ngIf="documentForm.get('intermediate')?.touched && documentForm.get('intermediate')?.invalid">
           12th document is required.
         </div>
@@ -60,7 +65,7 @@
 
       <div class="form-group">
         <label>Graduation document</label>
-        <input type="file" formControlName="graduationMarksheet" (change)="onFileChange($event, 'graduationMarksheet')">
+<input type="file" #gradInput formControlName="graduationMarksheet" (change)="onFileChange($event, 'graduationMarksheet', gradInput)">
         <div class="error" *ngIf="documentForm.get('graduationMarksheet')?.touched && documentForm.get('graduationMarksheet')?.invalid">
           Graduation document is required.
         </div>
@@ -69,10 +74,10 @@
 
       <div class="form-group">
         <label>Post Graduation document</label>
-        <input type="file" formControlName="postGraduation" (change)="onFileChange($event, 'postGraduation')">
-        <div class="error" *ngIf="documentForm.get('postGraduation')?.touched && documentForm.get('postGraduation')?.invalid">
+<input type="file" #postGradInput formControlName="postGraduation" (change)="onFileChange($event, 'postGraduation', postGradInput)">
+        <!-- <div class="error" *ngIf="documentForm.get('postGraduation')?.touched && documentForm.get('postGraduation')?.invalid">
           Post Graduation document is required.
-        </div>
+        </div> -->
         <div class="error" *ngIf="fileErrors['postGraduation']">{{ fileErrors['postGraduation'] }}</div>
       </div>
 
@@ -86,7 +91,7 @@
 
       <div class="form-group">
         <label>Upload Check Leaf</label>
-        <input type="file" formControlName="checkLeaf" (change)="onFileChange($event, 'checkLeaf')">
+<input type="file" #checkLeafInput formControlName="checkLeaf" (change)="onFileChange($event, 'checkLeaf', checkLeafInput)">
         <div class="error" *ngIf="documentForm.get('checkLeaf')?.touched && documentForm.get('checkLeaf')?.invalid">
           Check Leaf is required.
         </div>
@@ -97,7 +102,7 @@
     <div class="rightBox">
       <div class="form-group">
         <label>Upload Bank Passbook</label>
-        <input type="file" formControlName="passbook" (change)="onFileChange($event, 'passbook')">
+<input type="file" #passbookInput formControlName="passbook" (change)="onFileChange($event, 'passbook', passbookInput)">
         <div class="error" *ngIf="documentForm.get('passbook')?.touched && documentForm.get('passbook')?.invalid">
           Bank Passbook is required.
         </div>
